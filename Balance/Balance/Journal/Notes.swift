@@ -15,6 +15,7 @@ import SwiftData
 
 @Model
 final class Notes {
+    
     var timestamp: String
     var title: String
     var content: String
