@@ -12,7 +12,10 @@ struct EmotionView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var userEmoticon = "Indifferent"
     @State private var selectedOption: RadioOption? = RadioOption.option3
-//    @State private var isactView = false
+    @State private var isactView = false
+
+    @State private var dismissView = false //when this 
+    
     var body: some View {
         HStack {
             Spacer()
@@ -50,8 +53,7 @@ struct EmotionIconView: View {
         if let selected = selectedOption {
             Text(selected.imageName.uppercased())
                 .font( Font.custom("Avenir", size: 24)
-                    .weight(.medium)
-                )
+                    .weight(.medium) )
                 .foregroundColor(Color(red: 0.7, green: 0.66, blue: 0.87))
                 .padding()
         }else{
@@ -63,7 +65,7 @@ struct EmotionIconView: View {
                 Image(option.imageName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 60, height: 60) // Adjust this size as needed
+                    .frame(width: 60, height: 60)
                     .background(selectedOption == option ? Color.white : Color.clear )
                     .clipShape(Circle())
                     .shadow(radius: selectedOption == option ? 10: 0)
@@ -82,7 +84,6 @@ struct EmotionIconView: View {
         }, label: {
             Text("Continue")
         })
-        //If clicked = true make clickable
         .frame( width: 300, height: 20)
         .padding(10)
         .font(Font.custom("Avenir", size: 16)
@@ -90,7 +91,7 @@ struct EmotionIconView: View {
         )
         .foregroundColor(.black)
         .background(clicked ? Colors.PURPLE2.opacity(0.6) : .gray)
-        .cornerRadius(10)  // Optional: to round the corners
+        .cornerRadius(10)
         .padding(.horizontal)
         .disabled(!clicked)
         .fullScreenCover(isPresented: $isActView){

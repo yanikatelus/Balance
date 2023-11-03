@@ -13,41 +13,47 @@ struct ListJournalView: View {
     @Query private var notes: [Notes]
     
     var body: some View {
-        VStack {
-            
-            List{
-                ForEach(notes.reversed(), id: \.id){ notes in
-                    HStack{
-                        VStack(alignment: .leading){
-                            if notes.emoticon != "" {
-                                Image("\(notes.emoticon)")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                            }
-                            ForEach(notes.activities, id: \.self) { act in
-                                Text(act)
-                                    .padding(5)
-                                    .background(.purple.opacity(0.5))
-                                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                                    .font(.caption)
-                            }
-                            Text("\(notes.emoticon)")
-                            Text("\(notes.timestamp)")
-                        }
-                        .padding()
-                        
-                        VStack(alignment: .leading){
+        NavigationView{
+            VStack {
+                List{
+                    ForEach(notes.reversed(), id: \.id){ notes in
+                        NavigationLink{
+                            //The link will be to a view that takes notes of type [Notes]
                             Text("\(notes.title)")
-                            Text("\(notes.content)")
+                        } label: {
+                            HStack{
+                                VStack(alignment: .leading){
+                                    if notes.emoticon != "" {
+                                        Image("\(notes.emoticon)")
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                    }
+                                    ForEach(notes.activities, id: \.self) { act in
+                                        Text(act)
+                                            .padding(5)
+                                            .background(.purple.opacity(0.5))
+                                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                                            .font(.caption)
+                                    }
+                                    Text("\(notes.emoticon)")
+                                    Text("\(notes.timestamp)")
+                                }
+                                .padding()
+                                
+                                VStack(alignment: .leading){
+                                    Text("\(notes.title)")
+                                    Text("\(notes.content)")
+                                }
+                            } //Hstack
                         }
-                    } //Hstack
-                } //foreach
-                .onDelete(perform: deleteItems)
-            }//list
-        }//Vstack
-    }
+                    } //foreach
+                    .onDelete(perform: deleteNotes)
+                }//list
+            }
+        }//NavigationView
+    }//BODY
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteNotes(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
                 modelContext.delete(notes[index])
