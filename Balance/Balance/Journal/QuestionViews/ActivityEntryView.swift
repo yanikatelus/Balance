@@ -15,13 +15,46 @@ struct ActivityEntryView: View {
     @Binding var userEmoticon: String
     
     @State private var clicked: Bool = false
-    @State private var isNextView = false
+    @State private var isTextView = false//Sheet 3
+    
+    @Binding var isActView: Bool//sheet 2
+    @Binding var viewIsShowing: Bool//Sheet 1
     
     let rows = [GridItem(.adaptive(minimum: 80))]
 
     var body: some View {
         VStack {
-            SubNavView()//CHANGE TO OTHER ACTION
+//            SubNavView()//CHANGE TO OTHER ACTION
+            HStack {
+                
+                Button(action: {
+                    dismiss()
+                }, label: {
+                    Image(systemName: "arrow.left")
+                        .font(.title)
+                        .foregroundColor(.black)
+                        .padding(12)
+                        .background(Colors.BLACK.opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                })
+                .padding(12)
+                
+                Spacer()
+                
+                Button(action: {
+                    viewIsShowing = false
+                    isActView = false
+                    isTextView = false
+                }, label: {
+                    Image(systemName: "xmark.circle")
+                        .font(.title)
+                        .foregroundColor(.black)
+                        .padding(12)
+                        .background(Colors.BLACK.opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                })
+                .padding(12)
+            }
             
             HStack {
                 Text("What's making you feel \(userEmoticon)?")
@@ -39,8 +72,7 @@ struct ActivityEntryView: View {
                     .font(Font.custom("Avenir", size: 18))
                     .foregroundColor(Color(red: 0.51, green: 0.51, blue: 0.51).opacity(0.6))
                     .fontWeight(.medium)
-                    .frame(height: 18, alignment: .leading)
-                .padding(12)
+                    .padding(.horizontal, 12)
                 Spacer()
             }
             ScrollView(.horizontal) {
@@ -75,7 +107,8 @@ struct ActivityEntryView: View {
             
             VStack{
                 Button(action: {
-                    self.isNextView.toggle()
+//                    self.isTextView.toggle()
+                    self.isTextView = true
                 }, label: {
                     Text("Continue")
                         .frame( width: 300, height: 20)
@@ -89,8 +122,8 @@ struct ActivityEntryView: View {
                         .padding(.horizontal)
                 })
                 .disabled(!clicked)
-                .fullScreenCover(isPresented: $isNextView) {
-                    TextEntryView(userEmoticon: $userEmoticon, selectedActivities: $selectedActivities)
+                .fullScreenCover(isPresented: $isTextView) {
+                    TextEntryView(userEmoticon: $userEmoticon, selectedActivities: $selectedActivities, isTextView: $isTextView, isActView: $isActView, viewIsShowing: $viewIsShowing)
                 }
             }
         }//VStack
@@ -113,39 +146,5 @@ enum Activities: String, CaseIterable, Identifiable, Codable {
 }
 
 #Preview {
-    ActivityEntryView(selectedActivities: [], userEmoticon: .constant(""))
-}
-
-struct SubNavView: View {
-    @Environment(\.dismiss) var dismiss
-    var body: some View {
-        HStack {
-            
-            Button(action: {
-                dismiss()
-            }, label: {
-                Image(systemName: "arrow.left")
-                    .font(.title)
-                    .foregroundColor(.black)
-                    .padding(12)
-                    .background(Colors.BLACK.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-            })
-            .padding(12)
-            
-            Spacer()
-            
-            Button(action: {
-                dismiss()// this needs to be change to go to home screen
-            }, label: {
-                Image(systemName: "xmark.circle")
-                    .font(.title)
-                    .foregroundColor(.black)
-                    .padding(12)
-                    .background(Colors.BLACK.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-            })
-            .padding(12)
-        }
-    }
+    ActivityEntryView(selectedActivities: [], userEmoticon: .constant(""), isActView: .constant(false), viewIsShowing: .constant(false))
 }

@@ -12,10 +12,14 @@ struct TextEntryView: View {
     
     @Binding var userEmoticon: String
     @Binding var selectedActivities: [String]
+    
     @State private var userTitle = ""
     @State private var userContent = ""
     
-    @State private var isNextView = false
+    @State private var isNextView = false// sheet 4
+    @Binding var isTextView: Bool //sheet 3
+    @Binding var isActView: Bool//sheet 2
+    @Binding var viewIsShowing: Bool//Sheet 1
     
     var body: some View {
         HStack {
@@ -35,7 +39,12 @@ struct TextEntryView: View {
             Spacer()
             
             Button(action: {
-                dismiss()
+                
+                viewIsShowing = false
+                isActView = false
+                isTextView = false
+                isNextView = false
+                
             }, label: {
                 Image(systemName: "xmark.circle")
                     .font(.title)
@@ -109,7 +118,8 @@ struct TextEntryView: View {
         
         VStack{
             Button(action: {
-                self.isNextView.toggle()
+//                self.isNextView.toggle()
+                self.isNextView = true
             }, label: {
                 Text("Continue")
                     .frame( width: 300, height: 20)
@@ -124,7 +134,7 @@ struct TextEntryView: View {
             })
             .disabled(userTitle.isEmpty || userContent.isEmpty)
             .fullScreenCover(isPresented: $isNextView) {
-                UserReviewView(selectedActivities: $selectedActivities, userEmoticon: $userEmoticon, userTitle: $userTitle, userContent: $userContent )
+                UserReviewView(selectedActivities: $selectedActivities, userEmoticon: $userEmoticon, userTitle: $userTitle, userContent: $userContent, isNextView: $isNextView, isTextView: $isTextView, isActView: $isActView, viewIsShowing: $viewIsShowing)
             }
         }
     }
@@ -141,5 +151,5 @@ extension View {
 
 
 #Preview {
-    TextEntryView(userEmoticon: .constant(""), selectedActivities: .constant([]))
+    TextEntryView(userEmoticon: .constant(""), selectedActivities: .constant([]), isTextView: .constant(false), isActView: .constant(false), viewIsShowing: .constant(false))
 }

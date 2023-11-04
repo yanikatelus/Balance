@@ -18,12 +18,15 @@ struct UserReviewView: View {
     @Binding var userTitle: String
     @Binding var userContent: String
     
-//    @State private var clicked: Bool = false
-//    @State private var isNextView = false
+    
+    @Binding var isNextView: Bool// sheet 4
+    @Binding var isTextView: Bool //sheet 3
+    @Binding var isActView: Bool//sheet 2
+    @Binding var viewIsShowing: Bool//Sheet 1
     
     var body: some View {
         VStack {
-            JournalNavigationView(userEmoticon: $userEmoticon)//hstack top row
+            JournalNavigationView(userEmoticon: $userEmoticon, isNextView: $isNextView, isTextView: $isNextView, isActView: $isActView, viewIsShowing: $viewIsShowing )//hstack top row
             
             
             Text(formatDateNote(Date()))
@@ -132,18 +135,30 @@ struct UserReviewView: View {
             userTitle = ""
             userContent = ""
             selectedActivities = []
-            dismiss()
+            
+            //may need to changethese to one source of truth
+            viewIsShowing = false
+            isActView = false
+            isTextView = false
+            isNextView = false
+            
+            
         }
     }//addItem
 }//END
 
 #Preview {
-    UserReviewView(selectedActivities: .constant([]), userEmoticon: .constant(""), userTitle: .constant(""), userContent: .constant(""))
+    UserReviewView(selectedActivities: .constant([]), userEmoticon: .constant(""), userTitle: .constant(""), userContent: .constant(""), isNextView: .constant(false), isTextView: .constant(false), isActView: .constant(false), viewIsShowing: .constant(false))
 }
 
 struct JournalNavigationView: View {
     @Binding var userEmoticon: String
     @Environment(\.dismiss) var dismiss
+    
+    @Binding var isNextView: Bool// sheet 4
+    @Binding var isTextView: Bool //sheet 3
+    @Binding var isActView: Bool//sheet 2
+    @Binding var viewIsShowing: Bool//Sheet 1
     
     var body: some View {
         HStack {
@@ -170,7 +185,11 @@ struct JournalNavigationView: View {
             
             Spacer()
             Button(action: {
-                dismiss()
+                viewIsShowing = false
+                isActView = false
+                isTextView = false
+                isNextView = false
+                
             }, label: {
                 Image(systemName: "xmark.circle")
                     .font(.title)

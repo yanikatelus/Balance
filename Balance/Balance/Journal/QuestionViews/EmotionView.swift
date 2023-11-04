@@ -10,24 +10,53 @@ import SwiftData
 
 struct EmotionView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) var dismiss
     @State private var userEmoticon = "Indifferent"
     @State private var selectedOption: RadioOption? = RadioOption.option3
+    
+    
+    @Binding var viewIsShowing: Bool //For sheet1
     @State private var isactView = false
-
-    @State private var dismissView = false //when this 
     
     var body: some View {
         HStack {
             Spacer()
-            SubNavView()
+            HStack {
+                
+                Button(action: {
+                    dismiss()
+                }, label: {
+                    Image(systemName: "arrow.left")
+                        .font(.title)
+                        .foregroundColor(.black)
+                        .padding(12)
+                        .background(Colors.BLACK.opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                })
+                .padding(12)
+                
+                Spacer()
+                
+                Button(action: {
+                    dismiss()// this needs to be change to go to home screen
+                }, label: {
+                    Image(systemName: "xmark.circle")
+                        .font(.title)
+                        .foregroundColor(.black)
+                        .padding(12)
+                        .background(Colors.BLACK.opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                })
+                .padding(12)
+            }
         }
         
-        EmotionIconView(selectedOption: $selectedOption, userEmoticon: $userEmoticon)
+        EmotionIconView(selectedOption: $selectedOption, userEmoticon: $userEmoticon, isActView: $isactView, viewIsShowing: $viewIsShowing)
     }
 }
 
 #Preview {
-    EmotionView()
+    EmotionView(viewIsShowing: .constant(false))
 }
 
 struct EmotionIconView: View {
@@ -37,7 +66,9 @@ struct EmotionIconView: View {
     @Binding var userEmoticon: String
     
     @State private var clicked: Bool = false
-    @State private var isActView = false
+    @Binding var isActView: Bool//sheet 2
+    @Binding var viewIsShowing: Bool//Sheet 1
+    
     var body: some View {
         HStack {
             Text("How are you feeling today?")
@@ -80,7 +111,8 @@ struct EmotionIconView: View {
         Spacer()
         
         Button(action: {
-            self.isActView.toggle()
+//            self.isActView.toggle()
+            self.isActView = true
         }, label: {
             Text("Continue")
         })
@@ -95,7 +127,7 @@ struct EmotionIconView: View {
         .padding(.horizontal)
         .disabled(!clicked)
         .fullScreenCover(isPresented: $isActView){
-            ActivityEntryView( userEmoticon: $userEmoticon)
+            ActivityEntryView(userEmoticon: $userEmoticon, isActView: $isActView, viewIsShowing: $viewIsShowing )
         }
     }//body
     

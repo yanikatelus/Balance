@@ -16,7 +16,7 @@ struct QuoteCardView: View {
         VStack{
             HStack{
                 Image(systemName: "quote.opening")
-                    .foregroundColor(.black)
+                    .foregroundColor(Colors.BLACK)
                     .frame(maxWidth: .infinity, alignment: .topLeading)
 
                 if let tags = quote?.tags{
@@ -32,19 +32,25 @@ struct QuoteCardView: View {
             .padding(.vertical, 4)
             
             Text(quote?.content ?? "Fetching a quote..., Please make sure you are connected to the internet to get a quote")
-                .foregroundColor(.black)
+                .font(
+                    Font.custom("Avenir", size: 16)
+                    .weight(.medium)
+                )
+                .foregroundColor(Colors.BLACK)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack{
                 Text(quote?.author ?? "Author")
+                    .font( Font.custom("Avenir", size: 16))
                     .italic()
+                    .foregroundColor(Colors.BLACK)
                     .frame(maxWidth: .infinity, alignment: .topLeading)
                 Button(action: {
                     //save to core data\
                 }, label: {
                     Image(systemName: "heart")
                         .padding(8)
-                        .background(.purple.opacity(0.84))
+                        .background(Colors.PURPLE3)
                         .foregroundColor(.white)
                         .clipShape(.rect(cornerRadius: 8))
                 })
@@ -56,7 +62,7 @@ struct QuoteCardView: View {
         }
         .foregroundColor(.black)
         .padding()
-        .background(.purple.opacity(0.5))
+        .background(Colors.PURPLE2)
         .clipShape(.rect(cornerRadius: 10))
         .shadow(radius: 10)
     }//Body

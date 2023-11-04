@@ -23,7 +23,7 @@ struct ContentView: View {
                     Label("Journal", systemImage: "book")
                 }
                 
-            ListJournalView()
+            Text("Meals")
                 .tabItem {
 
                     Label("Meals", systemImage: "carrot")
@@ -40,7 +40,7 @@ struct ContentView: View {
 struct Colors {
     static let PURPLE  = Color(red: 0.82, green: 0.84, blue: 0.97)
     static let PURPLE2 = Color(red: 0.7, green: 0.66, blue: 0.87)
-    static let PURPLE3 = Color(red: 0.51, green: 0.49, blue: 1)
+    static let PURPLE3 = Color(red: 0.21, green: 0.17, blue: 0.45)
     static let BLACK = Color(red: 0.19, green: 0.19, blue: 0.19)
     static let GRAY = Color(red: 0.38, green: 0.38, blue: 0.38)
 }

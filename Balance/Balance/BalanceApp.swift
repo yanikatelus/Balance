@@ -19,7 +19,6 @@ struct BalanceApp: App {
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
-            //preview error pointing here
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
