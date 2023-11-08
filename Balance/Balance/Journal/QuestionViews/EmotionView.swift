@@ -14,46 +14,45 @@ struct EmotionView: View {
     @State private var userEmoticon = "Indifferent"
     @State private var selectedOption: RadioOption? = RadioOption.option3
     
-    
     @Binding var viewIsShowing: Bool //For sheet1
     @State private var isactView = false
     
     var body: some View {
-        HStack {
-            Spacer()
+        VStack{
             HStack {
-                
-                Button(action: {
-                    dismiss()
-                }, label: {
-                    Image(systemName: "arrow.left")
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .padding(12)
-                        .background(Colors.BLACK.opacity(0.1))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                })
-                .padding(12)
-                
                 Spacer()
-                
-                Button(action: {
-                    dismiss()// this needs to be change to go to home screen
-                }, label: {
-                    Image(systemName: "xmark.circle")
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .padding(12)
-                        .background(Colors.BLACK.opacity(0.1))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                })
-                .padding(12)
-            }
+                HStack {
+                    
+                    Button(action: {
+                        dismiss()
+                    }, label: {
+                        Image(systemName: "arrow.left")
+                            .font(.title)
+                            .foregroundColor(.black)
+                            .padding(12)
+                            .background(Colors.BLACK.opacity(0.1))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    })
+                    .padding(12)
+                    Spacer()
+                    Button(action: {
+                        dismiss()// this needs to be change to go to home screen
+                    }, label: {
+                        Image(systemName: "xmark.circle")
+                            .font(.title)
+                            .foregroundColor(.black)
+                            .padding(12)
+                            .background(Colors.BLACK.opacity(0.1))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    })
+                    .padding(12)
+                }//Hstack
+            }//Hstack
+            EmotionIconView(selectedOption: $selectedOption, userEmoticon: $userEmoticon, isActView: $isactView, viewIsShowing: $viewIsShowing)
         }
-        
-        EmotionIconView(selectedOption: $selectedOption, userEmoticon: $userEmoticon, isActView: $isactView, viewIsShowing: $viewIsShowing)
-    }
-}
+        .background(.white)
+    }//Bpdy
+}//end
 
 #Preview {
     EmotionView(viewIsShowing: .constant(false))
@@ -72,8 +71,8 @@ struct EmotionIconView: View {
     var body: some View {
         HStack {
             Text("How are you feeling today?")
-                .font(Font.custom("Avenir", size: 20))
-                .foregroundColor(Color(red: 0.51, green: 0.51, blue: 0.51).opacity(0.8))
+                .font(Font.custom("Avenir", size: 24))
+                .foregroundColor(Colors.PURPLE3)
                 .fontWeight(.heavy)
                 .frame(height: 18, alignment: .leading)
             .padding(12)
@@ -82,6 +81,10 @@ struct EmotionIconView: View {
         Spacer()
         //display and save the selected emotion
         if let selected = selectedOption {
+            Image(selected.imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 250, height: 250)
             Text(selected.imageName.uppercased())
                 .font( Font.custom("Avenir", size: 24)
                     .weight(.medium) )
@@ -111,7 +114,6 @@ struct EmotionIconView: View {
         Spacer()
         
         Button(action: {
-//            self.isActView.toggle()
             self.isActView = true
         }, label: {
             Text("Continue")

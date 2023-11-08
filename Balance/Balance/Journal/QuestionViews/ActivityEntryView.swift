@@ -126,7 +126,9 @@ struct ActivityEntryView: View {
                     TextEntryView(userEmoticon: $userEmoticon, selectedActivities: $selectedActivities, isTextView: $isTextView, isActView: $isActView, viewIsShowing: $viewIsShowing)
                 }
             }
-        }//VStack
+        } //VStack
+        .background(.white)
+        
     }//body
 }//End
 

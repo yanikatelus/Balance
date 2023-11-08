@@ -29,7 +29,7 @@ enum RadioOption: Int, CaseIterable, Identifiable, Codable {
             case .option2:
                 return "sad"
             case .option3:
-                return "Indifferent"
+                return "numb"
             case .option4:
                 return "happy"
             case .option5:

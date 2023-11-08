@@ -23,6 +23,10 @@
 		897D30D62AE46C5C0003F588 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D30D52AE46C5C0003F588 /* DateFormatter.swift */; };
 		899FDFC32AF40A3C00A5F3DA /* RadioOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FDFC22AF40A3C00A5F3DA /* RadioOptions.swift */; };
 		89E251462AF2DD4500317457 /* UserReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E251452AF2DD4500317457 /* UserReviewView.swift */; };
+		89F917B32AF6C718002AA3A1 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917B22AF6C718002AA3A1 /* RecipeView.swift */; };
+		89F917EF2AFB29A1002AA3A1 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */; };
+		89F917F12AFB3388002AA3A1 /* RecipeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917F02AFB3388002AA3A1 /* RecipeAPI.swift */; };
+		89F917F32AFC3385002AA3A1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917F22AFC3384002AA3A1 /* Cart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,10 @@
 		897D30D52AE46C5C0003F588 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		899FDFC22AF40A3C00A5F3DA /* RadioOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptions.swift; sourceTree = "<group>"; };
 		89E251452AF2DD4500317457 /* UserReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewView.swift; sourceTree = "<group>"; };
+		89F917B22AF6C718002AA3A1 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
+		89F917F02AFB3388002AA3A1 /* RecipeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPI.swift; sourceTree = "<group>"; };
+		89F917F22AFC3384002AA3A1 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +80,10 @@
 		892AE1662AF18256009F0139 /* Meal Diary */ = {
 			isa = PBXGroup;
 			children = (
-				892AE1672AF186A3009F0139 /* UserMealView.swift */,
+				89F917F02AFB3388002AA3A1 /* RecipeAPI.swift */,
+				89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */,
+				89F917F22AFC3384002AA3A1 /* Cart.swift */,
+				89F917F42AFC48BF002AA3A1 /* Views */,
 			);
 			path = "Meal Diary";
 			sourceTree = "<group>";
@@ -133,6 +144,15 @@
 				897D30CA2AE460480003F588 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		89F917F42AFC48BF002AA3A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				892AE1672AF186A3009F0139 /* UserMealView.swift */,
+				89F917B22AF6C718002AA3A1 /* RecipeView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +234,10 @@
 				89532EBD2AEC9B7B0003A204 /* QuoteAPIModel.swift in Sources */,
 				897D30D42AE4695E0003F588 /* JournalView.swift in Sources */,
 				899FDFC32AF40A3C00A5F3DA /* RadioOptions.swift in Sources */,
+				89F917F32AFC3385002AA3A1 /* Cart.swift in Sources */,
+				89F917EF2AFB29A1002AA3A1 /* MealViewModel.swift in Sources */,
+				89F917F12AFB3388002AA3A1 /* RecipeAPI.swift in Sources */,
+				89F917B32AF6C718002AA3A1 /* RecipeView.swift in Sources */,
 				89E251462AF2DD4500317457 /* UserReviewView.swift in Sources */,
 				892AE1312AF02E59009F0139 /* ActivityEntryView.swift in Sources */,
 				897D30C22AE460450003F588 /* BalanceApp.swift in Sources */,

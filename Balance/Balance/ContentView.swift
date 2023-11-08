@@ -11,6 +11,7 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var notes: [Notes]
+    @Query private var cart: [Cart]
 
     var body: some View {
         TabView {
@@ -23,9 +24,8 @@ struct ContentView: View {
                     Label("Journal", systemImage: "book")
                 }
                 
-            Text("Meals")
+            UserMealView()
                 .tabItem {
-
                     Label("Meals", systemImage: "carrot")
                 }
             Text("Settings")
@@ -33,7 +33,11 @@ struct ContentView: View {
                     Label("Settings", systemImage: "gearshape")
                 }
         }
-        .background(Colors.BLACK)
+        .tabViewStyle(
+            .automatic
+        )
+        .environment(\.colorScheme, .light)
+
     }//body
 }
 
@@ -48,4 +52,5 @@ struct Colors {
 #Preview {
     ContentView()
         .modelContainer(for: Notes.self, inMemory: true)
+        .modelContainer(for: Cart.self, inMemory: true)
 }

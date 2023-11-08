@@ -13,6 +13,7 @@ struct BalanceApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Notes.self,
+            Cart.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
