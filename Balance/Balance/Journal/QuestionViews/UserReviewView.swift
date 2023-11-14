@@ -25,10 +25,10 @@ struct UserReviewView: View {
     @Binding var viewIsShowing: Bool//Sheet 1
     
     var body: some View {
+        
         VStack{
             VStack {
-                JournalNavigationView(userEmoticon: $userEmoticon, isNextView: $isNextView, isTextView: $isNextView, isActView: $isActView, viewIsShowing: $viewIsShowing )//hstack top row
-                
+                JournalNavigationView(userEmoticon: $userEmoticon, isNextView: $isNextView, isTextView: $isNextView, isActView: $isActView, viewIsShowing: $viewIsShowing)
                 
                 Text(formatDateNote(Date()))
                     .font(Font.custom("Avenir", size: 20))
@@ -36,6 +36,7 @@ struct UserReviewView: View {
                     .bold()
                     .padding(12)
             }
+            
             Spacer()
             
             VStack {
@@ -63,10 +64,9 @@ struct UserReviewView: View {
                         .foregroundColor(Colors.PURPLE3)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         Spacer()
-                    }//foreach
-                    
-                }//Hstack
-            }//VStack
+                    } //foreach
+                } //Hstack
+            } //VStack
             .padding(12)
             
             
@@ -74,7 +74,7 @@ struct UserReviewView: View {
             VStack{
                 
                 Text(userTitle)
-                //            Text("This is my temporary tittle")
+//            Text("This is my temporary tittle")
                     .padding(12)
                     .font(Font.custom("Avenir", size: 18))
                     .foregroundColor(Colors.BLACK.opacity(0.8))
@@ -148,6 +148,7 @@ struct UserReviewView: View {
 
 #Preview {
     UserReviewView(selectedActivities: .constant([]), userEmoticon: .constant(""), userTitle: .constant(""), userContent: .constant(""), isNextView: .constant(false), isTextView: .constant(false), isActView: .constant(false), viewIsShowing: .constant(false))
+        .modelContainer(for: Notes.self, inMemory: true)
 }
 
 struct JournalNavigationView: View {

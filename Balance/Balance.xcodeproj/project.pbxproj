@@ -27,6 +27,7 @@
 		89F917EF2AFB29A1002AA3A1 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */; };
 		89F917F12AFB3388002AA3A1 /* RecipeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917F02AFB3388002AA3A1 /* RecipeAPI.swift */; };
 		89F917F32AFC3385002AA3A1 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917F22AFC3384002AA3A1 /* Cart.swift */; };
+		89F917F62AFC4F7F002AA3A1 /* ShoppingCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917F52AFC4F7F002AA3A1 /* ShoppingCartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
 		89F917F02AFB3388002AA3A1 /* RecipeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPI.swift; sourceTree = "<group>"; };
 		89F917F22AFC3384002AA3A1 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		89F917F52AFC4F7F002AA3A1 /* ShoppingCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			children = (
 				892AE1672AF186A3009F0139 /* UserMealView.swift */,
 				89F917B22AF6C718002AA3A1 /* RecipeView.swift */,
+				89F917F52AFC4F7F002AA3A1 /* ShoppingCartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				89532EC02AEED8420003A204 /* EmotionView.swift in Sources */,
 				897D30C42AE460450003F588 /* ContentView.swift in Sources */,
 				89160B002AE4E5B2004D63FB /* Notes.swift in Sources */,
+				89F917F62AFC4F7F002AA3A1 /* ShoppingCartView.swift in Sources */,
 				892AE1682AF186A3009F0139 /* UserMealView.swift in Sources */,
 				89160B042AE5D04E004D63FB /* ListJournalView.swift in Sources */,
 				89532EBB2AEADE840003A204 /* QuoteCardView.swift in Sources */,

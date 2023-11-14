@@ -10,10 +10,19 @@ import SwiftData
 
 @Model
 final class Cart{
+    var id: Int
+    var aisle: String
+    var image: String
+    var name: String
+    var amount: Double
+    var unit: String
     
-    var ingredientList: [Ingredient]
-    
-    init(ingredientList: [Ingredient]) {
-        self.ingredientList = ingredientList
+    init(id: Int, aisle: String, image: String, name: String, amount: Double, unit: String) {
+        self.id = id
+        self.aisle = aisle
+        self.image = image
+        self.name = name
+        self.amount = amount
+        self.unit = unit
     }
 }

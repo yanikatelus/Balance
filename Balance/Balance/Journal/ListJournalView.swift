@@ -101,7 +101,7 @@ struct ListJournalView: View {
                         .listRowInsets(EdgeInsets())
                         .listRowSeparator(.hidden)
                         .padding(.bottom, 24)
-                    }//foreach loop
+                    } //foreach loop
                     .onDelete(perform: deleteNotes)
                 }//List
                 .listStyle(.plain)

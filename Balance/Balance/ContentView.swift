@@ -28,7 +28,8 @@ struct ContentView: View {
                 .tabItem {
                     Label("Meals", systemImage: "carrot")
                 }
-            Text("Settings")
+//            ShoppingCartView()
+            Text("settings")
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                 }

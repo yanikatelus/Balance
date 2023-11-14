@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct UserMealView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var cart: [Cart]
     //the following two need to be collected when user logs in and enteres their preferences, name, gender, calorie goal, and dietary foods
     @State private var userName = "User"
     @State private var dietCategories = ["Vegan", "Keto", "Paleo", "Mediterranean"]// Will need to pass these as complexSearch; I will eventually let users select their dietary prefrances
@@ -27,14 +30,22 @@ struct UserMealView: View {
                 HStack{
                     UserGreetingView(username: $userName)
                         .foregroundColor(.black)
-                    Button{
-
-                    }label: {
+//                    Button{
+//
+//                    }label: {
+//                        Image(systemName: "bag.circle.fill")
+//                            .resizable()
+//                            .frame(width: 44, height: 44)
+//                            .foregroundColor(Colors.PURPLE2)
+//                    }
+                    NavigationLink(destination: {
+                        ShoppingCartView()
+                    }, label: {
                         Image(systemName: "bag.circle.fill")
                             .resizable()
                             .frame(width: 44, height: 44)
                             .foregroundColor(Colors.PURPLE2)
-                    }
+                    })
                 }
                 .padding()
                 //SEARCH
@@ -132,47 +143,47 @@ struct CourseCard: View {
             VStack(alignment: .leading){
                 HStack(){
                     Spacer()
-                    Button(action: {
-                        //open subview that allow you to add recipe to a list or add ingredients to cart
-                        self.showMenu.toggle()
-                    }, label: {
-                        Image(systemName: "plus")
-                            .resizable()
-                            .bold()
-                            .frame(width: 16, height: 16)
-                            .padding(6)
-                            .background(Colors.PURPLE2)
-                            .foregroundColor(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                    })
-                    .overlay(
-                        Group {
-                            if showMenu {
-                                // The menu view
-                                VStack(alignment: .trailing) {
-                                    Button() {
-                                        //Get info and save to list
-                                        self.showMenu = false
-                                    }label: {
-                                        Text("Add to Cart")
-                                        Image(systemName: "cart")
-                                    }
-                                    Button("Create New List") {
-                                        // Handle create new list action
-                                        self.showMenu = false
-                                    }
-                                }
-                                .frame(width: 170) // Set the width of the dropdown
-                                .background(Color.white) // Set the background of the dropdown
-                                .cornerRadius(5)
-                                .shadow(radius: 5)
-                                .offset(x: 0, y: 55)
-                            }
-                        },
-                        alignment: .bottomTrailing
-                    )
-             
+//                    Button(action: {
+//                        //open subview that allow you to add recipe to a list or add ingredients to cart
+//                        self.showMenu.toggle()
+//                    }, label: {
+//                        Image(systemName: "plus")
+//                            .resizable()
+//                            .bold()
+//                            .frame(width: 16, height: 16)
+//                            .padding(6)
+//                            .background(Colors.PURPLE2)
+//                            .foregroundColor(.white)
+//                            .clipShape(RoundedRectangle(cornerRadius: 5.0))
+//                    })
+//                    .overlay(
+//                        Group {
+//                            if showMenu {
+//                                // The menu view
+//                                VStack(alignment: .trailing) {
+//                                    Button() {
+//                                        //Get info and save to list
+//                                        self.showMenu = false
+//                                    }label: {
+//                                        Text("Add to Cart")
+//                                        Image(systemName: "cart")
+//                                    }
+//                                    Button("Create New List") {
+//                                        // Handle create new list action
+//                                        self.showMenu = false
+//                                    }
+//                                }
+//                                .frame(width: 170) // Set the width of the dropdown
+//                                .background(Color.white) // Set the background of the dropdown
+//                                .cornerRadius(5)
+//                                .shadow(radius: 5)
+//                                .offset(x: 0, y: 55)
+//                            }
+//                        },
+//                        alignment: .bottomTrailing
+//                    )
                 } //hstack
+                
                 Spacer()
                 HStack() {
                     Text(title)

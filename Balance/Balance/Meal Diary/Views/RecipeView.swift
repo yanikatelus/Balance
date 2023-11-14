@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 
 struct RecipeView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var cart: [Cart]
+
+    @State var viewSummary: Bool = false
     var rating: Double
     var recipes: [Recipe] = mockRecipes
     
@@ -18,6 +23,9 @@ struct RecipeView: View {
     var summary: String
     
     var extendedIngredients: [Ingredient]
+    
+    @State private var showAlert = false
+    @State private var itemToUpdate: Cart?
     
     var body: some View {
         VStack {
@@ -30,7 +38,6 @@ struct RecipeView: View {
                     .foregroundColor(Colors.PURPLE3)
 
                 ZStack(alignment: .bottom) {
-//                    Image(img)
                     AsyncImage(url: URL(string: img)){ phase in
                         switch phase {
                             case .empty:
@@ -98,13 +105,11 @@ struct RecipeView: View {
                                     Image(systemName: "star.fill")
                                         .resizable()
                                         .foregroundColor(.yellow)
-//                                            .font(.system(size: 15))
                                         .frame(width: 15, height: 15)
                                 } else {
                                     Image(systemName: "star.fill")
                                         .resizable()
                                         .foregroundColor(.white.opacity(0.7))
-//                                            .font(.system(size: 15))
                                         .frame(width: 15, height: 15)
                                 }//if
                             } //foreach
@@ -119,24 +124,43 @@ struct RecipeView: View {
                 }//ZSTACK
                 
                 Text("Summary")
+                    .onTapGesture {
+                        viewSummary.self.toggle()
+                    }
                     .font(Font.custom("Avenir", size: 20))
                     .fontWeight(.heavy)
                     .foregroundStyle(Colors.PURPLE3)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 4)
+                if viewSummary {
+                    Text(summary)
+                        .padding(.horizontal, 12)
+                        .font(Font.custom("Avenir", size: 18))
+                        .foregroundColor(Colors.GRAY)
+                }
                 
-                Text(summary)
-                    .padding(.horizontal, 12)
-                    .font(Font.custom("Avenir", size: 18))
-                    .foregroundColor(Colors.GRAY)
-
-                
-                Text("Ingrdients")
-                    .font(Font.custom("Avenir", size: 20))
-                    .fontWeight(.heavy)
-                    .foregroundStyle(Colors.PURPLE3)
-                    .padding(.horizontal, 12)
-                
+                HStack{
+                    Text("Ingrdients")
+                        .font(Font.custom("Avenir", size: 20))
+                        .fontWeight(.heavy)
+                        .foregroundStyle(Colors.PURPLE3)
+                        .padding(.horizontal, 12)
+                    
+                    Button{
+                        
+                    }label: {
+                        withAnimation {
+                            HStack{
+                                Text("Add All ingredients")
+                                Image(systemName: "plus")
+                                    .padding(6)
+                                    .background(Colors.PURPLE)
+                                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                                    .frame(width: 24, height: 24)
+                            }
+                        }//HSTACK
+                    }
+                }
                 List{
                     ForEach(extendedIngredients, id: \.self) { items in
                         HStack{
@@ -149,28 +173,90 @@ struct RecipeView: View {
                             }
                             Spacer()
                             Button{
-                                //Use this button to add this items to a list
-                                print("added \(items)")
+                                addItems(id: items.id , aisle: items.aisle, image: items.image, name: items.name, amount: items.amount, unit: items.unit)
                             } label: {
-                                HStack{
-                                    Text("Add")
-                                    Image(systemName: "plus")
-                                        .padding(6)
-                                        .background(Colors.PURPLE)
-                                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                                        .frame(width: 24, height: 24)
+                                withAnimation {
+                                    HStack{
+                                        Text("Add")
+                                        Image(systemName: "plus")
+                                            .padding(6)
+                                            .background(Colors.PURPLE)
+                                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                                            .frame(width: 24, height: 24)
+                                    }
                                 }//HSTACK
-                            }
+                            }//button
                         }
-                    }
+                    }//foreahc
                     .listRowSeparator(.hidden)
-                }
+                }//list
                 .listStyle(.plain)
             }
         }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Item Already in Cart"),
+                message: Text("This item has already been added to your cart. Would you like to increase the amount?"),
+                primaryButton: .default(Text("Increase"), action: {
+                    ItemIncrease(itemToUpdate)
+                }),
+                secondaryButton: .cancel()
+            )
+        }
     }//BODY
+    
+//    func addItems(id:Int, aisle: String, image: String, name: String, amount: Double, unit: String) {
+//        let newItem = Cart(id: id, aisle: aisle, image: image, name: name, amount: amount, unit: unit)
+//        if cart.contains(newItem){
+//            ItemIncrease(newItem)
+//        }else{
+//            modelContext.insert(newItem)
+//        }
+//    }
+    func addItems(id:Int, aisle: String, image: String, name: String, amount: Double, unit: String) {
+
+        if let existingItemIndex = cart.firstIndex(where: { $0.id == id }) {
+            // Found existing item, prepare to show alert
+            showAlert = true
+            itemToUpdate = cart[existingItemIndex]
+            return
+        }
+        let newItem = Cart(id: id, aisle: aisle, image: image, name: name, amount: amount, unit: unit)
+        modelContext.insert(newItem)
+    }
+    
+//    func ItemIncrease(_ item: Cart?) {
+//        //if item is not nil continue
+//        guard let updatingItem = item else { return }
+//        //      cycle through number of items in cart
+//        for i in (0..<cart.count){
+////            if cart.contains(updatingItem){
+//                print("\(cart[i].amount) \(cart.contains(updatingItem))")
+//                cart[i].amount += updatingItem.amount
+//                
+//                print("incresed to \(cart[i].amount) add \(updatingItem.amount) ")
+//                modelContext.insert(cart[i])
+//                break
+////            }
+//        }
+//        modelContext.insert(updatingItem)
+//    }
+    
+    func ItemIncrease(_ item: Cart?) {
+        //unwrap item
+        guard let updatingItem = item else { return }
+        
+        for _ in (0..<cart.count){
+            if let index = cart.firstIndex(where: { $0.id == updatingItem.id }) {
+                cart[index].amount += updatingItem.amount
+                break
+            }//if
+        }
+    }
+    
 }//END
 
 #Preview {
-    RecipeView(rating: 3.6, title: "Temporary title", img: "https://www.howtocook.recipes/wp-content/uploads/2021/05/Ratatouille-recipe.jpg", time: 90, summary: "text", extendedIngredients: [])
+    RecipeView(rating: 3.6, title: "Temporary title", img: "https://www.howtocook.recipes/wp-content/uploads/2021/05/Ratatouille-recipe.jpg", time: 90, summary: "text", extendedIngredients: [Ingredient(id: 200, aisle: "cheese", image: "eggs", name: "Eggs", amount: 24, unit: "Ounces")])
+        .modelContainer(for: Cart.self, inMemory: true)
 }

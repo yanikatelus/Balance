@@ -98,7 +98,7 @@ let mockRecipes: [Recipe] = [
             Ingredient(
                 id:1123,
                 aisle:"Milk, Eggs, Other Dairy",
-                image:"egg.png",
+                image:"eggs.png",
                 name:"eggs",
                 amount:2,
                 unit:""
@@ -153,7 +153,7 @@ let mockRecipes: [Recipe] = [
             Ingredient(
                 id:1123,
                 aisle:"Milk, Eggs, Other Dairy",
-                image:"egg.png",
+                image:"eggs.png",
                 name:"eggs",
                 amount:2,
                 unit:""
@@ -207,7 +207,7 @@ let mockRecipes: [Recipe] = [
             Ingredient(
                 id:1123,
                 aisle:"Milk, Eggs, Other Dairy",
-                image:"egg.png",
+                image:"eggs.png",
                 name:"eggs",
                 amount:2,
                 unit:""
