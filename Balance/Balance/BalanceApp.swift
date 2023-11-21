@@ -7,9 +7,13 @@
 
 import SwiftUI
 import SwiftData
+import Firebase
 
 @main
 struct BalanceApp: App {
+    
+    @StateObject var viewModel = AuthViewModel()
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Notes.self,
@@ -23,10 +27,15 @@ struct BalanceApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+    //configure Firebase
+    init(){
+        FirebaseApp.configure()
+    }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(viewModel)
         }
         .modelContainer(sharedModelContainer)
     }
