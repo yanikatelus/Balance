@@ -26,6 +26,7 @@ struct RecipeView: View {
     
     @State private var showAlert = false
     @State private var itemToUpdate: Cart?
+    @State private var currentItem: String = ""
     
     var body: some View {
         VStack {
@@ -45,10 +46,8 @@ struct RecipeView: View {
                         case .success(let image):
                             image
                                 .resizable()
-//                                .frame(height: 200)
                                 .aspectRatio(contentMode: .fill)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
-//                                .frame(height: 100)
                                 .overlay{
                                     RoundedRectangle(cornerRadius: 10)
                                         .opacity(0.0)
@@ -146,8 +145,13 @@ struct RecipeView: View {
                         .foregroundStyle(Colors.PURPLE3)
                         .padding(.horizontal, 12)
                     
+                    Spacer()
                     Button{
-                        
+                        for listItems in extendedIngredients{
+                            currentItem = listItems.name
+                            addItems(id: listItems.id, aisle: listItems.aisle, image: listItems.image, name: listItems.name, amount: listItems.amount, unit: listItems.unit)
+                            showAlert = false // i want to reset the alert bool each time
+                        }
                     }label: {
                         withAnimation {
                             HStack{
@@ -160,6 +164,7 @@ struct RecipeView: View {
                             }
                         }//HSTACK
                     }
+                    .padding(.horizontal, 20)
                 }
                 List{
                     ForEach(extendedIngredients, id: \.self) { items in
@@ -173,6 +178,7 @@ struct RecipeView: View {
                             }
                             Spacer()
                             Button{
+                                currentItem = items.name
                                 addItems(id: items.id , aisle: items.aisle, image: items.image, name: items.name, amount: items.amount, unit: items.unit)
                             } label: {
                                 withAnimation {
@@ -195,7 +201,7 @@ struct RecipeView: View {
         }
         .alert(isPresented: $showAlert) {
             Alert(
-                title: Text("Item Already in Cart"),
+                title: Text("\(currentItem) Already in Cart"),
                 message: Text("This item has already been added to your cart. Would you like to increase the amount?"),
                 primaryButton: .default(Text("Increase"), action: {
                     ItemIncrease(itemToUpdate)

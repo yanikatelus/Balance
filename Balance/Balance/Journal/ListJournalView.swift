@@ -128,6 +128,7 @@ struct ListJournalView: View {
 
 //cornerradious will depricated in future vesions of ios
 //Tutorial for  rounded counrners:
+//Chat GPT
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
