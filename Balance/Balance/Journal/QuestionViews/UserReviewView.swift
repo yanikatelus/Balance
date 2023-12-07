@@ -13,6 +13,9 @@ struct UserReviewView: View {
     @Environment(\.dismiss) var dismiss
     @Query private var notes: [Notes]
     
+    @EnvironmentObject var viewModel: AuthViewModel
+//    @State private var userId: String = ""
+    
     @Binding var selectedActivities: [String]
     @Binding var userEmoticon: String
     @Binding var userTitle: String
@@ -127,7 +130,12 @@ struct UserReviewView: View {
     }//BODY
     
     private func addNote() {
-        withAnimation {
+        //When creating a new note, ensure that the userId field is set to the ID of the currently logged-in user. This comes from your AuthViewModel.
+        //remember to Import AuthViewModel userID: viewModel.currentUser.id
+//        if let id = viewModel.currentUser?.id {
+//            userId = id
+        
+//            let newItem = Notes(userId: userId , timestamp: formatDateNote(Date()), title: userTitle, content: userContent, emoticon: userEmoticon, activities: selectedActivities)
             let newItem = Notes(timestamp: formatDateNote(Date()), title: userTitle, content: userContent, emoticon: userEmoticon, activities: selectedActivities)
             
             modelContext.insert(newItem)
@@ -135,20 +143,18 @@ struct UserReviewView: View {
             userContent = ""
             selectedActivities = []
             
-            //may need to changethese to one source of truth
             viewIsShowing = false
             isActView = false
             isTextView = false
             isNextView = false
-            
-            
-        }
+//        }//if let
     }//addItem
 }//END
 
 #Preview {
     UserReviewView(selectedActivities: .constant([]), userEmoticon: .constant(""), userTitle: .constant(""), userContent: .constant(""), isNextView: .constant(false), isTextView: .constant(false), isActView: .constant(false), viewIsShowing: .constant(false))
         .modelContainer(for: Notes.self, inMemory: true)
+        .environmentObject(AuthViewModel())
 }
 
 struct JournalNavigationView: View {

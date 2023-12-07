@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 func formatDateNote(_ date: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "EEEE MMMM d"
