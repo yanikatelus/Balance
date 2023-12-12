@@ -9,16 +9,16 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+//    @State var manager = HealthMannager()
     @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.modelContext) private var modelContext
     @Query private var notes: [Notes]
     @Query private var cart: [Cart]
 
     var body: some View {
-//        Group {
             if viewModel.userSession != nil {
                 TabView {
-                    Text("home")
+                    HealthView()
                         .tabItem {
                             Label("Home", systemImage: "house")
                         }
@@ -42,7 +42,6 @@ struct ContentView: View {
             } else {
                 LoginView()
             }
-//        }//Group
 
     }//body
 }
@@ -53,6 +52,7 @@ struct Colors {
     static let PURPLE3 = Color(red: 0.21, green: 0.17, blue: 0.45)
     static let BLACK = Color(red: 0.19, green: 0.19, blue: 0.19)
     static let GRAY = Color(red: 0.38, green: 0.38, blue: 0.38)
+    static let ACTIVE_PURPLE = Color(red: 0.51, green: 0.49, blue: 1)
 }
 
 struct Fonts{
@@ -69,7 +69,8 @@ struct Fonts{
 }
 
 #Preview {
-    ContentView().environmentObject(AuthViewModel())
+    ContentView()
+        .environmentObject(AuthViewModel())
         .modelContainer(for: Notes.self, inMemory: true)
         .modelContainer(for: Cart.self, inMemory: true)
 }

@@ -28,7 +28,7 @@ struct UserMealView: View {
         NavigationView{
             VStack{
                 HStack{
-                    UserGreetingView(username: $userName)
+                    UserGreetingView(username: userName)
                         .foregroundColor(.black)
 //                    Button{
 //

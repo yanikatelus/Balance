@@ -15,7 +15,7 @@ protocol AuthenticationFormProtocol {
     var formIsValid: Bool { get }
 }
 
-@MainActor// publish ui changes on the mai thread
+@MainActor// publish ui changes on the main thread
 class AuthViewModel: ObservableObject {
     //Optional to Checks to see wether we have a user logged in or not
     @Published var userSession: FirebaseAuth.User?//firebase user

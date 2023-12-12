@@ -23,7 +23,7 @@ struct JournalView: View {
         NavigationView {
             VStack(){
 
-                UserGreetingView(username: $userName)//will need to pulll this from authentication
+                UserGreetingView(username: userName)//will need to pulll this from authentication
                     .padding(.vertical, 12)
                     
                 Text("\(Text("Today").font(Font.custom("Avenir", size: 18)).fontWeight(.medium)), \n \(Today)")
@@ -73,7 +73,7 @@ struct JournalView: View {
 
 struct UserGreetingView: View {
     
-    @Binding var username: String
+    var username: String
     
     var body: some View {
         Text("\(getTimeOfDay()) \n\(username)")

@@ -23,6 +23,8 @@
 		897D30D42AE4695E0003F588 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D30D32AE4695E0003F588 /* JournalView.swift */; };
 		897D30D62AE46C5C0003F588 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D30D52AE46C5C0003F588 /* DateFormatter.swift */; };
 		899FDFC32AF40A3C00A5F3DA /* RadioOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FDFC22AF40A3C00A5F3DA /* RadioOptions.swift */; };
+		89AC6B5C2B27A58200A00E36 /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC6B5B2B27A58200A00E36 /* HealthView.swift */; };
+		89AC6B5E2B28321400A00E36 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC6B5D2B28321400A00E36 /* Health.swift */; };
 		89E251462AF2DD4500317457 /* UserReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E251452AF2DD4500317457 /* UserReviewView.swift */; };
 		89F917B32AF6C718002AA3A1 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917B22AF6C718002AA3A1 /* RecipeView.swift */; };
 		89F917EF2AFB29A1002AA3A1 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */; };
@@ -84,6 +86,8 @@
 		897D30D32AE4695E0003F588 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		897D30D52AE46C5C0003F588 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateFormatter.swift; path = ../DateFormatter.swift; sourceTree = "<group>"; };
 		899FDFC22AF40A3C00A5F3DA /* RadioOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptions.swift; sourceTree = "<group>"; };
+		89AC6B5B2B27A58200A00E36 /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HealthView.swift; path = ../../../../../Documents/HealthView.swift; sourceTree = "<group>"; };
+		89AC6B5D2B28321400A00E36 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		89E251452AF2DD4500317457 /* UserReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewView.swift; sourceTree = "<group>"; };
 		89F917B22AF6C718002AA3A1 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
@@ -206,7 +210,7 @@
 				89F918622B07434E002AA3A1 /* Authentication */,
 				89F918262B072844002AA3A1 /* Models */,
 				89F918232B070467002AA3A1 /* Settings */,
-				89F917FB2B059BFC002AA3A1 /* Health */,
+				89AC6B5A2B27A55A00A00E36 /* Health */,
 				892AE1662AF18256009F0139 /* Meal Diary */,
 				89160AFD2AE4E56B004D63FB /* Journal */,
 				897D30C72AE460480003F588 /* Assets.xcassets */,
@@ -223,6 +227,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		89AC6B5A2B27A55A00A00E36 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				89AC6B5B2B27A58200A00E36 /* HealthView.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
 		89F917F42AFC48BF002AA3A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,13 +243,6 @@
 				89F917F52AFC4F7F002AA3A1 /* ShoppingCartView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		89F917FB2B059BFC002AA3A1 /* Health */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Health;
 			sourceTree = "<group>";
 		};
 		89F9181C2B06B3E1002AA3A1 /* LoginView */ = {
@@ -265,6 +270,7 @@
 				897D30D52AE46C5C0003F588 /* DateFormatter.swift */,
 				89160AFF2AE4E5B2004D63FB /* Notes.swift */,
 				89F918272B072856002AA3A1 /* User.swift */,
+				89AC6B5D2B28321400A00E36 /* Health.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -404,6 +410,7 @@
 				899FDFC32AF40A3C00A5F3DA /* RadioOptions.swift in Sources */,
 				89F917F32AFC3385002AA3A1 /* Cart.swift in Sources */,
 				89F917EF2AFB29A1002AA3A1 /* MealViewModel.swift in Sources */,
+				89AC6B5C2B27A58200A00E36 /* HealthView.swift in Sources */,
 				89F917F12AFB3388002AA3A1 /* RecipeAPI.swift in Sources */,
 				89F917B32AF6C718002AA3A1 /* RecipeView.swift in Sources */,
 				89F918202B06B9E2002AA3A1 /* LoginView.swift in Sources */,
@@ -413,6 +420,7 @@
 				892AE1312AF02E59009F0139 /* ActivityEntryView.swift in Sources */,
 				89F918282B072856002AA3A1 /* User.swift in Sources */,
 				897D30C22AE460450003F588 /* BalanceApp.swift in Sources */,
+				89AC6B5E2B28321400A00E36 /* Health.swift in Sources */,
 				897D30D62AE46C5C0003F588 /* DateFormatter.swift in Sources */,
 				892AE12F2AF02080009F0139 /* TextEntryView.swift in Sources */,
 			);
@@ -553,6 +561,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Balance/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Balance needs to access to your health data to track step activity.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Balance needs to access to your health data to track step activity";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Balance needs access to your photo library to allow you to choose a profile picture and to add images to your notes. Your photos will only be used to enhance your app experience.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -585,6 +595,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Balance/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Balance needs to access to your health data to track step activity.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Balance needs to access to your health data to track step activity";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Balance needs access to your photo library to allow you to choose a profile picture and to add images to your notes. Your photos will only be used to enhance your app experience.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
