@@ -8,7 +8,7 @@
 import Foundation
 import HealthKit
 
-struct HeartRateDataPoint {
+struct HeartRateDataPoint: Hashable{
     let timestamp: Date
     let bpm: Double
 }
@@ -26,6 +26,7 @@ class HealthManager: ObservableObject {
     
     @Published var todaySteps: String = "0"
     @Published var todayCaloriesBurned: Int = 0
+    @Published var todaytotalCaloriesBurned: Int = 0
     
     init() {
         let steps = HKQuantityType(.stepCount)
@@ -75,67 +76,94 @@ class HealthManager: ObservableObject {
         }//query
         healthStore.execute(query)
     }
-//    func fetchTodayCaloriesBurned() {
-//        let calorieType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!
-//        let basalCalorieType = HKQuantityType.quantityType(forIdentifier: .basalEnergyBurned)!
-//        
-//        let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: .startOfDay), end: Date())
-//        
-//        let query = HKStatisticsQuery(quantityType: calorieType, quantitySamplePredicate: predicate) { _, activeCalorieResult, error in
-//            guard let activeQuantity = activeCalorieResult?.sumQuantity(), error == nil else {
-//                print("error fetching today's Active Calorie data")
+    func fetchTodayTotalCaloriesBurned() {
+        let calorieType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!
+        let basalCalorieType = HKQuantityType.quantityType(forIdentifier: .basalEnergyBurned)!
+        
+        let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: .startOfDay), end: Date())
+        
+        let query = HKStatisticsQuery(quantityType: calorieType, quantitySamplePredicate: predicate) { _, activeCalorieResult, error in
+            guard let activeQuantity = activeCalorieResult?.sumQuantity(), error == nil else {
+                print("error fetching today's Active Calorie data")
+                return
+            }
+            
+            let basalPredicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: .startOfDay), end: Date())
+            let basalQuery = HKStatisticsQuery(quantityType: basalCalorieType, quantitySamplePredicate: basalPredicate) { _, basalCalorieResult, basalError in
+                guard let basalQuantity = basalCalorieResult?.sumQuantity(), basalError == nil else {
+                    print("error fetching today's Basal Calorie data")
+                    return
+                }
+                
+                let totalCalories = activeQuantity.doubleValue(for: .largeCalorie()) + basalQuantity.doubleValue(for: .largeCalorie())
+                
+                DispatchQueue.main.async {
+                    self.todaytotalCaloriesBurned = Int(totalCalories)
+                }
+            }
+            
+            self.healthStore.execute(basalQuery)
+        }//active calorie query
+
+        healthStore.execute(query)
+    }
+    
+//    func fetchHeartRateData() {
+//        // Define the heart rate type
+//        let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
+//
+//        // Create a predicate for the last 24 hours
+//        let predicate = HKQuery.predicateForSamples(withStart: Date().addingTimeInterval(-24 * 3600), end: Date(), options: .strictStartDate)
+//
+//        // Create a query to fetch heart rate data
+//        let query = HKStatisticsQuery(quantityType: heartRateType, quantitySamplePredicate: predicate, options: .discreteAverage) { _, result, error in
+//            guard let result = result, error == nil else {
+//                print("Error fetching heart rate data: \(error?.localizedDescription ?? "")")
 //                return
 //            }
-//            
-//            let basalPredicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: .startOfDay), end: Date())
-//            let basalQuery = HKStatisticsQuery(quantityType: basalCalorieType, quantitySamplePredicate: basalPredicate) { _, basalCalorieResult, basalError in
-//                guard let basalQuantity = basalCalorieResult?.sumQuantity(), basalError == nil else {
-//                    print("error fetching today's Basal Calorie data")
-//                    return
-//                }
-//                
-//                let totalCalories = activeQuantity.doubleValue(for: .largeCalorie()) + basalQuantity.doubleValue(for: .largeCalorie())
-//                
-//                DispatchQueue.main.async {
-//                    self.todayCaloriesBurned = Int(totalCalories)
-//                }
-//            }
-//            
-//            self.healthStore.execute(basalQuery)
-//        }//active calorie query
 //
-//        healthStore.execute(query)
+//            if let averageBPM = result.averageQuantity()?.doubleValue(for: HKUnit.count().unitDivided(by: .minute())) {
+//                // Handle the averageBPM data point here
+//                print("Average Heart Rate: \(averageBPM) BPM")
+//
+//                // You can add this data point to your heart rate data array
+//                let timestamp = Date()// Use the current timestamp
+//                let heartRateDataPoint = HeartRateDataPoint(timestamp: timestamp, bpm: averageBPM)
+//
+//                // Add the heartRateDataPoint to your data array
+//                self.heartRateDataArray.append(heartRateDataPoint)
+//            }
+//        }
+//
+//        // Execute the query
+//        self.healthStore.execute(query)
 //    }
     
-    func fetchHeartRateData() {
-        // Define the heart rate type
+    func fetchHistoricalHeartRateData() {
+        let healthStore = HKHealthStore()
         let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
 
-        // Create a predicate for the last 24 hours
-        let predicate = HKQuery.predicateForSamples(withStart: Date().addingTimeInterval(-24 * 3600), end: Date(), options: .strictStartDate)
+        // Calculate the start date for the past 8 hours
+        let eightHoursAgo = Calendar.current.date(byAdding: .hour, value: -8, to: Date())!
 
-        // Create a query to fetch heart rate data
-        let query = HKStatisticsQuery(quantityType: heartRateType, quantitySamplePredicate: predicate, options: .discreteAverage) { _, result, error in
-            guard let result = result, error == nil else {
-                print("Error fetching heart rate data: \(error?.localizedDescription ?? "")")
+        let predicate = HKQuery.predicateForSamples(withStart: eightHoursAgo, end: Date(), options: .strictStartDate)
+
+        let query = HKSampleQuery(sampleType: heartRateType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { query, results, error in
+            guard let results = results as? [HKQuantitySample], error == nil else {
+                print("Error fetching historical heart rate data: \(error?.localizedDescription ?? "")")
                 return
             }
 
-            if let averageBPM = result.averageQuantity()?.doubleValue(for: HKUnit.count().unitDivided(by: .minute())) {
-                // Handle the averageBPM data point here
-                print("Average Heart Rate: \(averageBPM) BPM")
-
-                // You can add this data point to your heart rate data array
-                let timestamp = Date() // Use the current timestamp
-                let heartRateDataPoint = HeartRateDataPoint(timestamp: timestamp, bpm: averageBPM)
-
-                // Add the heartRateDataPoint to your data array
-                self.heartRateDataArray.append(heartRateDataPoint)
+            // Process the fetched heart rate data
+            let heartRateData = results.map { sample in
+                HeartRateDataPoint(timestamp: sample.startDate, bpm: sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: .minute())))
             }
+
+            // Update your data array with the historical heart rate data
+            self.heartRateDataArray = heartRateData
         }
 
-        // Execute the query
-        self.healthStore.execute(query)
+        healthStore.execute(query)
     }
 }
 

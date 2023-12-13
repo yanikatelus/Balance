@@ -12,6 +12,7 @@ struct SetGoalsView: View {
     @Binding var isPresented: Bool
     @Binding var stepGoal: Int
     @Binding var calorieGoal: Int
+    @Binding var activeGoal: Int
     
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
@@ -29,6 +30,12 @@ struct SetGoalsView: View {
                 Section(header: Text("Calorie Goal")) {
                     Stepper(value: $calorieGoal, in: 100...5000, step: 100) {
                         Text("\(calorieGoal) calories")
+                    }
+                }
+                
+                Section(header: Text("Calorie Goal")) {
+                    Stepper(value: $activeGoal, in: 100...5000, step: 100) {
+                        Text("\(activeGoal) calories")
                     }
                 }
             }
@@ -55,6 +62,6 @@ struct SetGoalsView: View {
 }
 
 #Preview {
-    SetGoalsView(isPresented: .constant(true), stepGoal: .constant(100), calorieGoal: .constant(100))
+    SetGoalsView(isPresented: .constant(true), stepGoal: .constant(100), calorieGoal: .constant(100), activeGoal: .constant(100))
         .modelContainer(for: Activity.self, inMemory: true)
 }
