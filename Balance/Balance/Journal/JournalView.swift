@@ -14,17 +14,23 @@ struct JournalView: View {
     @Environment(\.dismiss) var dismiss
     
     //FUTURE: Take user input on first login
-    @State private var userName = "User"
+//    @State private var userName = "User"
+    @EnvironmentObject var viewModel: AuthViewModel
     @State private var Today = formatDateNote(Date())
     
     @State private var viewIsShowing = false//for sheets
     
     var body: some View {
         NavigationView {
-            VStack(){
+            VStack{
 
-                UserGreetingView(username: userName)//will need to pulll this from authentication
-                    .padding(.vertical, 12)
+//                UserGreetingView(username: userName)//will need to pulll this from authentication
+//                    .padding(.vertical, 12)
+                
+                if let user = viewModel.currentUser {
+                    UserGreetingView(username: user.fullname)
+                        .padding(.vertical, 12)
+                }
                     
                 Text("\(Text("Today").font(Font.custom("Avenir", size: 18)).fontWeight(.medium)), \n \(Today)")
                 .frame(maxWidth: .infinity, alignment: .topLeading)

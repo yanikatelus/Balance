@@ -26,6 +26,7 @@
 		89AC6B5C2B27A58200A00E36 /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC6B5B2B27A58200A00E36 /* HealthView.swift */; };
 		89AC6B5E2B28321400A00E36 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC6B5D2B28321400A00E36 /* Health.swift */; };
 		89E251462AF2DD4500317457 /* UserReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E251452AF2DD4500317457 /* UserReviewView.swift */; };
+		89F605E02B290A1C00583896 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F605DF2B290A1C00583896 /* Activity.swift */; };
 		89F917B32AF6C718002AA3A1 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917B22AF6C718002AA3A1 /* RecipeView.swift */; };
 		89F917EF2AFB29A1002AA3A1 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */; };
 		89F917F12AFB3388002AA3A1 /* RecipeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917F02AFB3388002AA3A1 /* RecipeAPI.swift */; };
@@ -89,6 +90,8 @@
 		89AC6B5B2B27A58200A00E36 /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HealthView.swift; path = ../../../../../Documents/HealthView.swift; sourceTree = "<group>"; };
 		89AC6B5D2B28321400A00E36 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		89E251452AF2DD4500317457 /* UserReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewView.swift; sourceTree = "<group>"; };
+		89F605DE2B28EEB100583896 /* Balance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Balance.entitlements; sourceTree = "<group>"; };
+		89F605DF2B290A1C00583896 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		89F917B22AF6C718002AA3A1 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
 		89F917F02AFB3388002AA3A1 /* RecipeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPI.swift; sourceTree = "<group>"; };
@@ -158,7 +161,6 @@
 			children = (
 				89F917F02AFB3388002AA3A1 /* RecipeAPI.swift */,
 				89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */,
-				89F917F22AFC3384002AA3A1 /* Cart.swift */,
 				89F917F42AFC48BF002AA3A1 /* Views */,
 			);
 			path = "Meal Diary";
@@ -203,6 +205,7 @@
 		897D30C02AE460450003F588 /* Balance */ = {
 			isa = PBXGroup;
 			children = (
+				89F605DE2B28EEB100583896 /* Balance.entitlements */,
 				89037D5E2B0D2959008D9965 /* Info.plist */,
 				897D30C12AE460450003F588 /* BalanceApp.swift */,
 				897D30C32AE460450003F588 /* ContentView.swift */,
@@ -268,9 +271,11 @@
 			isa = PBXGroup;
 			children = (
 				897D30D52AE46C5C0003F588 /* DateFormatter.swift */,
+				89F917F22AFC3384002AA3A1 /* Cart.swift */,
 				89160AFF2AE4E5B2004D63FB /* Notes.swift */,
 				89F918272B072856002AA3A1 /* User.swift */,
 				89AC6B5D2B28321400A00E36 /* Health.swift */,
+				89F605DF2B290A1C00583896 /* Activity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				892AE1312AF02E59009F0139 /* ActivityEntryView.swift in Sources */,
 				89F918282B072856002AA3A1 /* User.swift in Sources */,
 				897D30C22AE460450003F588 /* BalanceApp.swift in Sources */,
+				89F605E02B290A1C00583896 /* Activity.swift in Sources */,
 				89AC6B5E2B28321400A00E36 /* Health.swift in Sources */,
 				897D30D62AE46C5C0003F588 /* DateFormatter.swift in Sources */,
 				892AE12F2AF02080009F0139 /* TextEntryView.swift in Sources */,
@@ -553,6 +559,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Balance/Balance.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Balance/Preview Content\"";
@@ -587,6 +594,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Balance/Balance.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Balance/Preview Content\"";

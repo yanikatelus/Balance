@@ -9,9 +9,11 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-//    @State var manager = HealthMannager()
-    @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.modelContext) private var modelContext
+    
+    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var manager: HealthManager
+    
     @Query private var notes: [Notes]
     @Query private var cart: [Cart]
 
@@ -19,6 +21,7 @@ struct ContentView: View {
             if viewModel.userSession != nil {
                 TabView {
                     HealthView()
+                        .environmentObject(manager)
                         .tabItem {
                             Label("Home", systemImage: "house")
                         }

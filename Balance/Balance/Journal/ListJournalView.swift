@@ -109,7 +109,6 @@ struct ListJournalView: View {
             }//navigationView
             .padding(.leading, 12)
         }
-        .background(.white)
     }//BODY
 
     private func deleteNotes(offsets: IndexSet) {
