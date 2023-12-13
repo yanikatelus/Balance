@@ -12,10 +12,10 @@ struct JournalView: View {
     
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel: AuthViewModel
     
     //FUTURE: Take user input on first login
 //    @State private var userName = "User"
-    @EnvironmentObject var viewModel: AuthViewModel
     @State private var Today = formatDateNote(Date())
     
     @State private var viewIsShowing = false//for sheets
@@ -74,6 +74,7 @@ struct JournalView: View {
 
 #Preview {
     JournalView()
+        .environmentObject(AuthViewModel())
         .modelContainer(for: Notes.self, inMemory: true)
 }
 

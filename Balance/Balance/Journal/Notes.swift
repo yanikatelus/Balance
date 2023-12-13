@@ -15,7 +15,7 @@ import SwiftData
 
 @Model
 final class Notes {
-    //Integrate with Forestore. save UID of current logged in user
+    //Integrate with Forestore. save UID of current logged in user // running into issues itegrating will hold off
 //    var userId: String
     var timestamp: String
     var title: String

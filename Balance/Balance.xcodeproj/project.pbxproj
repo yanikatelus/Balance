@@ -27,6 +27,7 @@
 		89AC6B5E2B28321400A00E36 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC6B5D2B28321400A00E36 /* Health.swift */; };
 		89E251462AF2DD4500317457 /* UserReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E251452AF2DD4500317457 /* UserReviewView.swift */; };
 		89F605E02B290A1C00583896 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F605DF2B290A1C00583896 /* Activity.swift */; };
+		89F605E22B297BA700583896 /* SetGoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F605E12B297BA700583896 /* SetGoalsView.swift */; };
 		89F917B32AF6C718002AA3A1 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917B22AF6C718002AA3A1 /* RecipeView.swift */; };
 		89F917EF2AFB29A1002AA3A1 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */; };
 		89F917F12AFB3388002AA3A1 /* RecipeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F917F02AFB3388002AA3A1 /* RecipeAPI.swift */; };
@@ -92,6 +93,7 @@
 		89E251452AF2DD4500317457 /* UserReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewView.swift; sourceTree = "<group>"; };
 		89F605DE2B28EEB100583896 /* Balance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Balance.entitlements; sourceTree = "<group>"; };
 		89F605DF2B290A1C00583896 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		89F605E12B297BA700583896 /* SetGoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalsView.swift; sourceTree = "<group>"; };
 		89F917B22AF6C718002AA3A1 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		89F917EE2AFB29A1002AA3A1 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
 		89F917F02AFB3388002AA3A1 /* RecipeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPI.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				89AC6B5B2B27A58200A00E36 /* HealthView.swift */,
+				89F605E12B297BA700583896 /* SetGoalsView.swift */,
 			);
 			path = Health;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				89F918282B072856002AA3A1 /* User.swift in Sources */,
 				897D30C22AE460450003F588 /* BalanceApp.swift in Sources */,
 				89F605E02B290A1C00583896 /* Activity.swift in Sources */,
+				89F605E22B297BA700583896 /* SetGoalsView.swift in Sources */,
 				89AC6B5E2B28321400A00E36 /* Health.swift in Sources */,
 				897D30D62AE46C5C0003F588 /* DateFormatter.swift in Sources */,
 				892AE12F2AF02080009F0139 /* TextEntryView.swift in Sources */,

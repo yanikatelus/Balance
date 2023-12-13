@@ -6,11 +6,16 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Activity {
-    let id: Int
-    let title: String
-    let Subtittle: String
-    let image: String
-    let amount: String
+@Model
+final class Activity{
+    var stepGoal: Int
+    var calorieGoal: Int
+    
+    init(stepGoal: Int, calorieGoal: Int) {
+        self.stepGoal = stepGoal
+        self.calorieGoal = calorieGoal
+
+    }
 }

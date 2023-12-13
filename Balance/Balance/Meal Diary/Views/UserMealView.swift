@@ -107,6 +107,7 @@ struct UserMealView: View {
 
 #Preview {
     UserMealView()
+        .environmentObject(AuthViewModel())
 }
 
 struct CourseCard: View {

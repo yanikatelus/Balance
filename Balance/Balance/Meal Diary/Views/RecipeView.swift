@@ -199,6 +199,7 @@ struct RecipeView: View {
                 .listStyle(.plain)
             }
         }
+        .padding(12)
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("\(currentItem) Already in Cart"),

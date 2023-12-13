@@ -16,9 +16,10 @@ struct ContentView: View {
     
     @Query private var notes: [Notes]
     @Query private var cart: [Cart]
+    @Query private var activity: [Activity]
 
     var body: some View {
-            if viewModel.userSession != nil {
+        if viewModel.userSession != nil {
                 TabView {
                     HealthView()
                         .environmentObject(manager)
@@ -76,4 +77,5 @@ struct Fonts{
         .environmentObject(AuthViewModel())
         .modelContainer(for: Notes.self, inMemory: true)
         .modelContainer(for: Cart.self, inMemory: true)
+        .modelContainer(for: Activity.self, inMemory: true)
 }
