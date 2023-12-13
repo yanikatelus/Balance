@@ -23,7 +23,7 @@
 		897D30D42AE4695E0003F588 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D30D32AE4695E0003F588 /* JournalView.swift */; };
 		897D30D62AE46C5C0003F588 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D30D52AE46C5C0003F588 /* DateFormatter.swift */; };
 		899FDFC32AF40A3C00A5F3DA /* RadioOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FDFC22AF40A3C00A5F3DA /* RadioOptions.swift */; };
-		89AC6B5C2B27A58200A00E36 /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC6B5B2B27A58200A00E36 /* HealthView.swift */; };
+		89AC6B5C2B27A58200A00E36 /* HealthViewDeleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC6B5B2B27A58200A00E36 /* HealthViewDeleted.swift */; };
 		89AC6B5E2B28321400A00E36 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AC6B5D2B28321400A00E36 /* Health.swift */; };
 		89E251462AF2DD4500317457 /* UserReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E251452AF2DD4500317457 /* UserReviewView.swift */; };
 		89F605E02B290A1C00583896 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F605DF2B290A1C00583896 /* Activity.swift */; };
@@ -89,7 +89,7 @@
 		897D30D32AE4695E0003F588 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		897D30D52AE46C5C0003F588 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateFormatter.swift; path = ../DateFormatter.swift; sourceTree = "<group>"; };
 		899FDFC22AF40A3C00A5F3DA /* RadioOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptions.swift; sourceTree = "<group>"; };
-		89AC6B5B2B27A58200A00E36 /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HealthView.swift; path = ../../../../../Documents/HealthView.swift; sourceTree = "<group>"; };
+		89AC6B5B2B27A58200A00E36 /* HealthViewDeleted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HealthViewDeleted.swift; path = ../../../../../Documents/HealthViewDeleted.swift; sourceTree = "<group>"; };
 		89AC6B5D2B28321400A00E36 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		89E251452AF2DD4500317457 /* UserReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewView.swift; sourceTree = "<group>"; };
 		89F605DE2B28EEB100583896 /* Balance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Balance.entitlements; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 		89AC6B5A2B27A55A00A00E36 /* Health */ = {
 			isa = PBXGroup;
 			children = (
-				89AC6B5B2B27A58200A00E36 /* HealthView.swift */,
+				89AC6B5B2B27A58200A00E36 /* HealthViewDeleted.swift */,
 				89F605E32B2A1D8700583896 /* HealthView.swift */,
 				89F605E12B297BA700583896 /* SetGoalsView.swift */,
 			);
@@ -422,7 +422,7 @@
 				899FDFC32AF40A3C00A5F3DA /* RadioOptions.swift in Sources */,
 				89F917F32AFC3385002AA3A1 /* Cart.swift in Sources */,
 				89F917EF2AFB29A1002AA3A1 /* MealViewModel.swift in Sources */,
-				89AC6B5C2B27A58200A00E36 /* HealthView.swift in Sources */,
+				89AC6B5C2B27A58200A00E36 /* HealthViewDeleted.swift in Sources */,
 				89F917F12AFB3388002AA3A1 /* RecipeAPI.swift in Sources */,
 				89F917B32AF6C718002AA3A1 /* RecipeView.swift in Sources */,
 				89F918202B06B9E2002AA3A1 /* LoginView.swift in Sources */,
