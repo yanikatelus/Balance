@@ -12,19 +12,25 @@ struct JournalView: View {
     
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel: AuthViewModel
     
     //FUTURE: Take user input on first login
-    @State private var userName = "User"
+//    @State private var userName = "User"
     @State private var Today = formatDateNote(Date())
     
     @State private var viewIsShowing = false//for sheets
     
     var body: some View {
         NavigationView {
-            VStack(){
+            VStack{
 
-                UserGreetingView(username: $userName)//will need to pulll this from authentication
-                    .padding(.vertical, 12)
+//                UserGreetingView(username: userName)//will need to pulll this from authentication
+//                    .padding(.vertical, 12)
+                
+                if let user = viewModel.currentUser {
+                    UserGreetingView(username: user.fullname)
+                        .padding(.vertical, 12)
+                }
                     
                 Text("\(Text("Today").font(Font.custom("Avenir", size: 18)).fontWeight(.medium)), \n \(Today)")
                 .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -57,6 +63,8 @@ struct JournalView: View {
                 .padding(.bottom, 12)
                 
                 QuoteCardView()
+                
+                
             }//Vstack
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding(.horizontal, 12)
@@ -68,12 +76,13 @@ struct JournalView: View {
 
 #Preview {
     JournalView()
+        .environmentObject(AuthViewModel())
         .modelContainer(for: Notes.self, inMemory: true)
 }
 
 struct UserGreetingView: View {
     
-    @Binding var username: String
+    var username: String
     
     var body: some View {
         Text("\(getTimeOfDay()) \n\(username)")

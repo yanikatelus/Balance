@@ -13,11 +13,13 @@ import Firebase
 struct BalanceApp: App {
     
     @StateObject var viewModel = AuthViewModel()
+    @StateObject var manager = HealthManager()
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Notes.self,
-            Cart.self
+            Cart.self,
+            Activity.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -35,6 +37,7 @@ struct BalanceApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(manager)
                 .environmentObject(viewModel)
         }
         .modelContainer(sharedModelContainer)

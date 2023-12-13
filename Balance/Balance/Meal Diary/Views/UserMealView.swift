@@ -12,7 +12,8 @@ struct UserMealView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var cart: [Cart]
     //the following two need to be collected when user logs in and enteres their preferences, name, gender, calorie goal, and dietary foods
-    @State private var userName = "User"
+//    @State private var userName = "User"
+    @EnvironmentObject var viewModel: AuthViewModel
     @State private var dietCategories = ["Vegan", "Keto", "Paleo", "Mediterranean"]// Will need to pass these as complexSearch; I will eventually let users select their dietary prefrances
     
     @State private var score: Double = 23
@@ -28,8 +29,10 @@ struct UserMealView: View {
         NavigationView{
             VStack{
                 HStack{
-                    UserGreetingView(username: $userName)
-                        .foregroundColor(.black)
+                    if let user = viewModel.currentUser {
+                        UserGreetingView(username: user.fullname)
+                            .padding(.vertical, 12)
+                    }
 //                    Button{
 //
 //                    }label: {
@@ -104,6 +107,7 @@ struct UserMealView: View {
 
 #Preview {
     UserMealView()
+        .environmentObject(AuthViewModel())
 }
 
 struct CourseCard: View {
