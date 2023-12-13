@@ -5,6 +5,16 @@
 //  Created by Yanika Telus on 11/16/23.
 //
 
+/**
+ A view for user login.
+
+ This view provides fields for entering email and password for user authentication.
+ 
+ - Note: This view uses the `LoginFieldView` for the email and password input fields.
+ 
+ - Author: Yanika Telus
+ */
+
 import SwiftUI
 
 struct LoginView: View {
@@ -76,7 +86,13 @@ struct LoginView: View {
         }//Navstack
     }//body
 }
-
+/**
+ Determines whether the login form is valid.
+ 
+ The form is considered valid if both the email and password fields are not empty, and the email contains "@" and the password has at least 6 characters.
+ 
+ - Returns: `true` if the form is valid; otherwise, `false`.
+ */
 extension LoginView: AuthenticationFormProtocol {
     var formIsValid: Bool {
         return !email.isEmpty && email.contains("@") && !password.isEmpty && password.count > 5

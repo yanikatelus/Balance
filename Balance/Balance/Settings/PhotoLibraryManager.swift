@@ -4,7 +4,7 @@
 //
 //  Created by Yanika Telus on 11/21/23.
 //
-//Using corelocationexample as reference
+
 import Foundation
 import Photos
 import SwiftUI

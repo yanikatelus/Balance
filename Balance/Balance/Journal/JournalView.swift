@@ -63,6 +63,8 @@ struct JournalView: View {
                 .padding(.bottom, 12)
                 
                 QuoteCardView()
+                
+                
             }//Vstack
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding(.horizontal, 12)

@@ -5,6 +5,16 @@
 //  Created by Yanika Telus on 11/16/23.
 //
 
+/**
+ A view for user sign-up.
+
+ This view provides fields for entering email, full name, and password for user registration.
+ 
+ - Note: This view uses the `LoginFieldView` for the email, full name, and password input fields.
+ 
+ - Author: Yanika Telus
+ */
+
 import SwiftUI
 
 struct SignUpView: View {
@@ -61,7 +71,7 @@ struct SignUpView: View {
                     try await viewModel.createUser(withEmail: email, password: password, fullname: name)
                 }
             } label: {
-                Text("Sign un")
+                Text("Sign Up")
                     .padding(.horizontal, 20)
                     .padding(.vertical, 18)
                     .disabled(!formIsValid)
@@ -100,7 +110,13 @@ struct SignUpView: View {
         .padding(.horizontal, 12)
     }//BODY
 }//SIGNUPVIEW
-
+/**
+ Determines whether the sign-up form is valid.
+ 
+ The form is considered valid if the email is not empty, contains "@" and the password is not empty and has at least 6 characters. Additionally, the "Confirm Password" field must match the password, and the full name must not be empty.
+ 
+ - Returns: `true` if the form is valid; otherwise, `false`.
+ */
 extension SignUpView: AuthenticationFormProtocol {
     var formIsValid: Bool {
         return !email.isEmpty && email.contains("@") && !password.isEmpty && password.count > 5 && confrimPass == password && !name.isEmpty

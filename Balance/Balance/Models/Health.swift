@@ -8,6 +8,7 @@
 import Foundation
 import HealthKit
 
+
 struct HeartRateDataPoint: Hashable{
     let timestamp: Date
     let bpm: Double
@@ -19,6 +20,13 @@ extension Date {
     }
 }
 
+/**
+ Manages health-related data and interactions with HealthKit.
+
+ The `HealthManager` class provides functionality for managing health-related data and interacting with HealthKit. It tracks and updates data such as steps, calories burned, and heart rate data.
+
+ - Author: Yanika Telus
+ */
 class HealthManager: ObservableObject {
     var heartRateDataArray: [HeartRateDataPoint] = []
     
@@ -28,6 +36,12 @@ class HealthManager: ObservableObject {
     @Published var todayCaloriesBurned: Int = 0
     @Published var todaytotalCaloriesBurned: Int = 0
     
+    /**
+     Initializes an instance of the HealthManager class and requests HealthKit authorization.
+
+     The initializer requests authorization to access health data types like steps, calorie burned, basal calorie burned, and heart rate data from HealthKit.
+
+     */
     init() {
         let steps = HKQuantityType(.stepCount)
         let calorieBurned = HKQuantityType(.activeEnergyBurned)
@@ -44,6 +58,12 @@ class HealthManager: ObservableObject {
         }
     }
     
+    /**
+     Fetches today's step count data and updates the `todaySteps` property.
+
+     This method fetches the user's step count data for the current day and updates the `todaySteps` property with the retrieved data.
+
+     */
     func fetchTodaySteps() {
         let steps = HKQuantityType(.stepCount)
         let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: .startOfDay), end: Date())
@@ -61,6 +81,12 @@ class HealthManager: ObservableObject {
         healthStore.execute(query)
     }//Fetch todays steps
     
+    /**
+     Fetches today's calorie burned data and updates the `todayCaloriesBurned` property.
+
+     This method fetches the user's calorie burned data for the current day and updates the `todayCaloriesBurned` property with the retrieved data.
+
+     */
     func fetchTodayCaloriesBurned() {
         let calorieType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!
         let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: .startOfDay), end: Date())
@@ -76,6 +102,13 @@ class HealthManager: ObservableObject {
         }//query
         healthStore.execute(query)
     }
+    
+    /**
+     Fetches today's total calorie burned data and updates the `todaytotalCaloriesBurned` property.
+
+     This method fetches the user's total calorie burned data, including active and basal calories, for the current day and updates the `todaytotalCaloriesBurned` property with the retrieved data.
+
+     */
     func fetchTodayTotalCaloriesBurned() {
         let calorieType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!
         let basalCalorieType = HKQuantityType.quantityType(forIdentifier: .basalEnergyBurned)!
@@ -139,6 +172,12 @@ class HealthManager: ObservableObject {
 //        self.healthStore.execute(query)
 //    }
     
+    /**
+         Fetches historical heart rate data and updates the `heartRateDataArray` property.
+
+         This method fetches historical heart rate data from HealthKit for the past 8 hours and updates the `heartRateDataArray` property with the retrieved data.
+
+         */
     func fetchHistoricalHeartRateData() {
         let healthStore = HKHealthStore()
         let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
@@ -166,7 +205,13 @@ class HealthManager: ObservableObject {
         healthStore.execute(query)
     }
 }
+/**
+     Converts a Double value into a formatted String.
 
+     This method takes a Double value and converts it into a formatted String with no decimal places using `NumberFormatter`.
+
+     - Returns: A formatted String representation of the Double value.
+     */
 extension Double {
     func formattedString() -> String? {
         let numberFormater = NumberFormatter()
