@@ -16,7 +16,7 @@ With its combination of physical health tracking, nutritional support, mental we
 ### **Firebase:** 
 https://firebase.google.com/docs/reference/swift/firebasecore/api/reference/Classes
 
-### **Quotable:** 
+### **Quotable API:** 
 https://github.com/lukePeavey/quotable
 
 ### **HealthKit Documentation:**
