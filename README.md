@@ -26,6 +26,8 @@ https://developer.apple.com/documentation/healthkit
 <img src="https://github.com/yanikatelus/Balance/assets/20778019/a0e28fac-49c3-435c-a686-24df91e84a36" width="200">
 <img src="https://github.com/yanikatelus/Balance/assets/20778019/bc97de95-906c-42a3-81f3-ba4e35bccbb4" width="200">
 <img src="https://github.com/yanikatelus/Balance/assets/20778019/43571173-6a17-420f-a3e7-6517ff158a3c" width="200">
+<img src="https://github.com/yanikatelus/Balance/assets/20778019/d091e20a-1497-4eca-bc9a-c9b7a9b539d3" width="200">
+<img src="https://github.com/yanikatelus/Balance/assets/20778019/7b921c6d-6997-4f2f-93ba-d4948516d97f" width="200">
 
 
 <img width="1440" alt="Screenshot 2024-01-14 at 12 21 04 AM" src="https://github.com/yanikatelus/Balance/assets/20778019/8f9ecb54-0051-4ab0-a1ab-11b50e804cbd">
